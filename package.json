@@ -5,14 +5,15 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js",
+    "start": "node server.js",
+    "dev": "nodemon server.js",
     "start:prod": "NODE_ENV=production nodemon server.js",
     "debug": "ndb server.js",
     "watch:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js --public-url /js",
     "build:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js"
   },
   "author": "oncel",
-  "license": "ISC",
+  "license": "ISC",  
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
     "axios": "^0.21.1",
@@ -54,5 +55,8 @@
     "eslint-plugin-react": "^7.22.0",
     "ndb": "^1.1.5",
     "prettier": "^2.2.1"
+  },
+  "engines": {
+    "node": ">=14.15.4"
   }
 }

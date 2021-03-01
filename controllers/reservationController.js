@@ -1,5 +1,5 @@
 const { Event } = require("../models/eventModel");
-const AppError = require("../utils/appError");
+const { AppError } = require("../utils/appError");
 const { catchAsync } = require("../utils/catchAsync");
 const { Reservation } = require("../models/reservationModel");
 const factory = require("./handlerFactory");

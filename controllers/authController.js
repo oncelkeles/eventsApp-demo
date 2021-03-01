@@ -4,13 +4,13 @@ const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
 
 const { User } = require("../models/userModel");
-const AppError = require("../utils/appError");
-const { catchAsync } = require("../utils/catchAsync");
+const { AppError } = require("../utils/appError");
+const { catchAsync } = require("../utilƒs/catchAsync");
 
-const createToken = (id) =>
-  jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRES_IN,
-  });
+const createToken = (id) => ƒ;
+jwt.sign({ id }, process.env.JWT_SECRET, {
+  expiresIn: process.env.JWT_EXPIRES_IN,
+});
 
 exports.forgotPassword = catchAsync(async (req, res, next) => {
   const { email } = req.body;

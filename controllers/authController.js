@@ -66,9 +66,9 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
 });
 
 exports.signup = catchAsync(async (req, res, next) => {
-  /* if (req.body.role === "admin") {
+  if (req.body.role === "admin") {
     return next(new AppError("Cannot signup as admin!", 403));
-  } */
+  }
   const newUser = await User.create(req.body);
   const token = createToken(newUser._id);
   newUser.password = undefined;

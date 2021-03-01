@@ -7,6 +7,7 @@ interface ReservationInterface extends Document {
   user: ID;
   event: ID;
   createdAt: Date;
+  tickets: Number;
 }
 
 export const ReservationSchema: Schema<ReservationInterface> = new Schema({
@@ -27,6 +28,10 @@ export const ReservationSchema: Schema<ReservationInterface> = new Schema({
   createdAt: {
     type: Date,
     default: Date.now(),
+  },
+  tickets: {
+    type: Number,
+    default: 0,
   },
 });
 

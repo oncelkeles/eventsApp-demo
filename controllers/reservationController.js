@@ -13,6 +13,7 @@ exports.createReservationDetails = catchAsync(async (req, res, next) => {
 
   req.body.event = event;
   req.body.user = req.user;
+  req.body.price = event.price;
 
   next();
 });

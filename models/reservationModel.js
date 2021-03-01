@@ -21,6 +21,10 @@ exports.ReservationSchema = new mongoose_1.Schema({
         type: Date,
         default: Date.now(),
     },
+    tickets: {
+        type: Number,
+        default: 0,
+    },
 });
 exports.ReservationSchema.pre(/^find/, function (next) {
     this.populate("user").populate("event");

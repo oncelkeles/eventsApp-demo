@@ -38,11 +38,16 @@ const EventSchema = new mongoose_1.Schema({
         city: String,
         venue: String,
     },
+    imageCover: {
+        type: String,
+        required: [true, "A tour must have a cover image"],
+    },
     price: {
         type: Number,
         required: [true, "An event must have a price!"],
     },
     maxPeople: Number,
+    seatsLeft: Number,
 });
 EventSchema.pre("remove", async function (next) {
     await reservationModel_js_1.Reservation.deleteMany({ event: this.id });

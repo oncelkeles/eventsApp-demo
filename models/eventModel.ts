@@ -16,6 +16,8 @@ interface EventInterface extends Document {
   location: Location;
   price: Number;
   maxPeople: Number;
+  seatsLeft: Number;
+  imageCover: String;
 }
 
 //const EventSchemaFields =
@@ -54,11 +56,16 @@ const EventSchema = new Schema({
     city: String,
     venue: String,
   },
+  imageCover: {
+    type: String,
+    required: [true, "A tour must have a cover image"],
+  },
   price: {
     type: Number,
     required: [true, "An event must have a price!"],
   },
   maxPeople: Number,
+  seatsLeft: Number,
 });
 
 EventSchema.pre("remove", async function (next) {

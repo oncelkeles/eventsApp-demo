@@ -6,6 +6,7 @@ const mongoSanitize = require("express-mongo-sanitize");
 const xss = require("xss-clean");
 const hpp = require("hpp");
 const cookieParser = require("cookie-parser");
+const compression = require("compression");
 
 const eventRouter = require("./routes/eventRoutes");
 const userRouter = require("./routes/userRoutes");
@@ -49,6 +50,8 @@ app.use(
     ],
   })
 );
+
+app.use(compression());
 
 app.use("/api/v1/events", eventRouter);
 app.use("/api/v1/users", userRouter);

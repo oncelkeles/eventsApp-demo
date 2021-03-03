@@ -54,19 +54,6 @@ exports.UserSchema.pre("save", async function (next) {
 exports.UserSchema.methods.checkPassword = async function (enteredPassword, userPassword) {
     return await bcryptjs_1.default.compare(enteredPassword, userPassword);
 };
-/* UserSchema.methods.createResetPasswordToken = function (
-  this: Document
-): string {
-  const resetToken = crypto.randomBytes(32).toString("hex");
-  this.passwordResetToken = crypto
-    .createHash("sha256")
-    .update(resetToken)
-    .digest("hex");
-
-  this.passwordResetExpires = new Date(Date.now() + 10 * 60 * 1000);
-
-  return resetToken;
-}; */
 exports.UserSchema.methods.createResetPasswordToken = function () {
     const resetToken = crypto_1.default.randomBytes(32).toString("hex");
     this.passwordResetToken = crypto_1.default

@@ -3,11 +3,11 @@ import { Schema, model, Document, Types, Model } from "mongoose";
 type ID = Types.ObjectId;
 
 interface ReservationInterface extends Document {
-  price: Number;
+  price: number;
   user: ID;
   event: ID;
   createdAt: Date;
-  tickets: Number;
+  tickets: number;
 }
 
 export const ReservationSchema: Schema<ReservationInterface> = new Schema({

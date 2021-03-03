@@ -5,13 +5,13 @@ import validator from "validator";
 import bcrypt from "bcryptjs";
 
 export interface UserInterface extends Document {
-  name: String;
-  email: String;
-  password: String;
-  passwordConfirm: String;
-  role: String;
+  name: string;
+  email: string;
+  password: string;
+  passwordConfirm: string;
+  role: string;
   passwordChangedAt: Date;
-  passwordResetToken: String;
+  passwordResetToken: string;
   passwordResetExpires: Date;
   createResetPasswordToken(): string;
 }
@@ -68,20 +68,6 @@ UserSchema.methods.checkPassword = async function (
 ) {
   return await bcrypt.compare(enteredPassword, userPassword);
 };
-
-/* UserSchema.methods.createResetPasswordToken = function (
-  this: Document
-): string {
-  const resetToken = crypto.randomBytes(32).toString("hex");
-  this.passwordResetToken = crypto
-    .createHash("sha256")
-    .update(resetToken)
-    .digest("hex");
-
-  this.passwordResetExpires = new Date(Date.now() + 10 * 60 * 1000);
-
-  return resetToken;
-}; */
 
 UserSchema.methods.createResetPasswordToken = function (): string {
   const resetToken = crypto.randomBytes(32).toString("hex");

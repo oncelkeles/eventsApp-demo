@@ -7,6 +7,7 @@ const xss = require("xss-clean");
 const hpp = require("hpp");
 const cookieParser = require("cookie-parser");
 const compression = require("compression");
+const cors = require("cors");
 
 const eventRouter = require("./routes/eventRoutes");
 const userRouter = require("./routes/userRoutes");
@@ -16,6 +17,7 @@ const errorHandler = require("./controllers/errorController");
 const app = express();
 
 app.use(helmet());
+app.use(cors());
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));

@@ -11,6 +11,7 @@ router
   .post(
     authController.protectRoute,
     authController.restrict("admin"),
+    eventController.uploadImage,
     eventController.createEvent
   );
 

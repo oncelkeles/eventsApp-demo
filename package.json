@@ -13,9 +13,10 @@
     "build:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js"
   },
   "author": "oncel",
-  "license": "ISC",  
+  "license": "ISC",
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
+    "aws-sdk": "^2.854.0",
     "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
     "compression": "^1.7.4",
@@ -31,6 +32,7 @@
     "mongoose": "^5.11.17",
     "morgan": "^1.10.0",
     "multer": "^1.4.2",
+    "multer-s3": "^2.9.0",
     "nodemailer": "^4.7.0",
     "sharp": "^0.27.1",
     "slugify": "^1.4.6",

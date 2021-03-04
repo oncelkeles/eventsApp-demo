@@ -23,7 +23,7 @@ const corsOptions = {
   origin: true,
   allowedHeaders: ["Content-Type", "Authorization"],
 };
-app.use(cors());
+app.use(cors(corsOptions));
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));

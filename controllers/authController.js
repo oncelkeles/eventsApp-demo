@@ -127,6 +127,7 @@ exports.login = catchAsync(async (req, res, next) => {
 
 exports.protectRoute = catchAsync(async (req, res, next) => {
   let token;
+  console.log(req);
 
   if (
     req.headers.authorization &&

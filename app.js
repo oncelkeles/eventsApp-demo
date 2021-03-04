@@ -16,14 +16,18 @@ const errorHandler = require("./controllers/errorController");
 
 const app = express();
 
-app.use(helmet());
+app.enable("trust proxy");
 
 const corsOptions = {
   credentials: true,
-  origin: true,
+  origin: "http://localhost:3000/",
   allowedHeaders: ["Content-Type", "Authorization"],
 };
 app.use(cors(corsOptions));
+
+app.options("*", cors());
+
+app.use(helmet());
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));

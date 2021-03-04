@@ -17,6 +17,12 @@ const errorHandler = require("./controllers/errorController");
 const app = express();
 
 app.use(helmet());
+
+const corsOptions = {
+  credentials: true,
+  origin: true,
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
 app.use(cors());
 
 if (process.env.NODE_ENV === "development") {

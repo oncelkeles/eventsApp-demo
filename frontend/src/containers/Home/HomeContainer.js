@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { Skeleton, Switch, Card, Avatar } from "antd";
+import { Card, Avatar } from "antd";
 
-import Event from "../../components/Events/Event/Event";
 import Events from "../../components/Events/Events";
 import classes from "./HomeContainer.module.css";
-import services from "../../utils/services";
+import services from "../../apiService/services";
 import EventDetails from "../../components/EventDetails/EventDetails";
 import * as actionTypes from "../../store/actions/action";
 import scrollOnClose from "../../utils/scrollOnClose";
@@ -15,7 +14,6 @@ const { Meta } = Card;
 const HomeContainer = (props) => {
   const [events, setEvents] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [showDetails, setShowDetails] = useState(false);
 
   useEffect(async () => {
     const fetchData = async () => {

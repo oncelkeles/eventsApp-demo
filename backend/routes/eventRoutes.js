@@ -11,7 +11,8 @@ router
   .post(
     authController.protectRoute,
     authController.restrict("admin"),
-    eventController.uploadPhoto,
+    eventController.uploadForm,
+    eventController.createLocation,
     eventController.uploadImageCover,
     eventController.createEvent
   );
@@ -27,7 +28,8 @@ router
   .patch(
     authController.protectRoute,
     authController.restrict("admin"),
-    eventController.uploadPhoto,
+    eventController.uploadForm,
+    eventController.createLocation,
     eventController.uploadImageCover,
     eventController.updateEvent
   );

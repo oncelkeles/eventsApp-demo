@@ -5,7 +5,7 @@ import Highlighter from "react-highlight-words";
 import { SearchOutlined } from "@ant-design/icons";
 
 import formatDate from "../../../../utils/formatDate";
-import services from "../../../../utils/services";
+import services from "../../../../apiService/services";
 import classes from "../EventsPanel.module.css";
 import * as actionTypes from "../../../../store/actions/action";
 import scrollToInfo from "../../../../utils/scrollToInfo";
@@ -14,21 +14,15 @@ const EventsTable = (props) => {
   const [eventsData, setEventsData] = useState("");
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
-  const [filteredInfo, setFilteredInfo] = useState(null);
-  const [sortedInfo, setSortedInfo] = useState(null);
 
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
     setSearchText(selectedKeys[0]);
     setSearchedColumn(dataIndex);
-    console.log("selectedkeys", selectedKeys);
-    console.log("data index", dataIndex);
   };
 
   useEffect(() => {
     setEventsData(props.events);
-    console.log(typeof props.events);
-    console.log(props.events);
   }, [props.events]);
 
   function cancel(e) {}
@@ -136,21 +130,18 @@ const EventsTable = (props) => {
       title: "Price",
       render: (record, key) => <div key={key}>{record.price}$</div>,
       key: "price",
-      //...this.getColumnSearchProps("address"),
       sorter: (a, b) => a.price - b.price,
     },
     {
       title: "Duration",
       render: (record, key) => <div key={key}>{record.duration} minutes</div>,
       key: "duration",
-      //...this.getColumnSearchProps("address"),
       sorter: (a, b) => a.duration - b.duration,
     },
     {
       title: "Max People",
       dataIndex: "maxPeople",
       key: "maxPeople",
-      //...this.getColumnSearchProps("address"),
     },
     {
       title: "Action",
@@ -183,7 +174,6 @@ const EventsTable = (props) => {
       ),
     },
   ];
-  console.log(eventsData);
 
   return (
     <div className={classes.EventsTable}>
@@ -192,8 +182,13 @@ const EventsTable = (props) => {
         columns={columns}
         scroll
         dataSource={eventsData.length > 0 ? eventsData : ""}
+        loading={props.loadingTable}
       />
-      <Button style={{width:"200px"}} onClick={() => props.changeComponent(2)} type="primary">
+      <Button
+        style={{ width: "200px" }}
+        onClick={() => props.changeComponent(2)}
+        type="primary"
+      >
         Create New Event
       </Button>
     </div>

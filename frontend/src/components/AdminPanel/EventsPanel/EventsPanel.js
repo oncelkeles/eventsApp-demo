@@ -3,7 +3,7 @@ import {  message } from "antd";
 
 import classes from "./EventsPanel.module.css";
 import EventsTable from "./EventsTable/EventsTable";
-import services from "../../../utils/services";
+import services from "../../../apiService/services";
 import UpdateEventForm from "./UpdateEventForm/UpdateEventForm";
 import AddEventForm from "./AddEventForm/AddEventForm";
 
@@ -11,6 +11,7 @@ const EventsPanel = (props) => {
   // 0 for table, 1 for update form, 2 for add form
   const [showComponent, setShowComponent] = useState(0);
   const [currentEvent, setCurrentEvent] = useState(null);
+
 
   const showComponentHandler = (componentNumber, selectedEvent) => {
     if (selectedEvent) {
@@ -48,6 +49,7 @@ const EventsPanel = (props) => {
             changeComponent={showComponentHandler}
             events={props.events}
             deleteEvent={deleteEventHandler}
+            loadingTable={props.loadingTable}
           />
         ) : null}
         {showComponent === 1 ? (

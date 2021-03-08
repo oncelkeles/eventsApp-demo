@@ -34,7 +34,10 @@ router.route("/").get(reservationController.getAllReservations);
 router
   .route("/:id")
   .patch(reservationController.updateReservation)
-  .delete(reservationController.deleteReservation)
+  .delete(
+    reservationController.deleteReservationTicketsFromEvent,
+    reservationController.deleteReservation
+  )
   .get(reservationController.getReservation);
 
 module.exports = router;

@@ -28,8 +28,6 @@ const AddEventForm = (props) => {
   const [form] = Form.useForm();
 
   const onFinish = (values) => {
-    console.log(selectedImage);
-    console.log(imageDescription);
     values.event.startDate = startDate;
     props.createEvent(values.event, selectedImage, imageDescription);
   };
@@ -40,8 +38,6 @@ const AddEventForm = (props) => {
     setSelectedImage(event.target.files[0]);
     setImageDescription(event.target.value);
   };
-
-  console.log(props.currentEvent);
 
   return (
     <div className={classes.EventFormDiv}>

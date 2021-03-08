@@ -15,8 +15,28 @@ exports.createReservationDetails = catchAsync(async (req, res, next) => {
   req.body.user = req.user;
   req.body.price = event.price;
 
+  event.participants = req.body.tickets + event.participants;
+
+  await event.save();
+
   next();
 });
+
+exports.deleteReservationTicketsFromEvent = catchAsync(
+  async (req, res, next) => {
+    const reservation = await Reservation.findById(req.params.id);
+
+    const event = await Event.findById(reservation.event._id);
+
+    event.participants = event.participants - reservation.tickets;
+    await event.save();
+
+    console.log(reservation);
+    console.log(event);
+
+    next();
+  }
+);
 
 exports.createReservation = factory.createOne(Reservation);
 

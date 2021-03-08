@@ -13,11 +13,11 @@ const Event = (props) => {
     <div className={classes.EventBox}>
       <div className={classes.Event}>
         <div style={{ height: "2%" }} />
-        <div style={{ height: "18%" }}>
+        <div style={{ height: "18%", paddingRight: "4px", paddingLeft: "4px" }}>
           <h3>{event.title}</h3>
           <span style={{ fontSize: "12px" }}>{event.description}</span>
         </div>
-        <div style={{ height: "3%" }} />
+        <div style={{ height: "5%" }} />
         <div style={{ height: "54%" }} className={classes.Image}>
           <img
             className={classes.Image}
@@ -39,18 +39,20 @@ const Event = (props) => {
             <p style={{ textAlign: "center" }}>Seats left: &nbsp;</p>
             <p className={classes.InfoPrg}>{event.seatsLeft}</p>
           </div>
+          <div style={{ alignItems: "center", justifyContent: "center", marginTop:"-9px" }}>
+            <Button
+              onClick={() => {
+                props.onEventClicked(props.event);
+                props.onDetailOpen();
+                props.onModalOpen(window.pageYOffset);
+                scrollToInfo(window.pageYOffset);
+              }}
+              className={classes.Button}
+            >
+              Details
+            </Button>
+          </div>
         </div>
-        <Button
-          onClick={() => {
-            props.onEventClicked(props.event);
-            props.onDetailOpen();
-            props.onModalOpen(window.pageYOffset);
-            scrollToInfo(window.pageYOffset);
-          }}
-          className={classes.Button}
-        >
-          Details
-        </Button>
       </div>
     </div>
   );

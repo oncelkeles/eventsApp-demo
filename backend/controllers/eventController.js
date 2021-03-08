@@ -77,44 +77,57 @@ var uploadSingle = multer({
   }),
 }).single("file");
 
-exports.uploadPhoto = upload.single("photo");
+exports.uploadForm = upload.single("photo");
 
-exports.uploadImageCover = async (req, res, next) => {
-  const city = req.body.city;
-  const venue = req.body.venue;
+exports.createLocation = async (req, res, next) => {
+  let city;
+  let venue;
+  console.log(req.body);
+  if (req.body.city) {
+    city = req.body.city;
+  }
+  if (req.body.venue) {
+    venue = req.body.venue;
+  }
 
   req.body.location = {
     city,
     venue,
   };
+  next();
+};
+
+exports.uploadImageCover = async (req, res, next) => {
   if (!req.file) {
-    return next(new AppError("Could not upload image!", 400));
-  }
-  const path = require("path");
-  const file = req.file;
-
-  let name =
-    path.basename(file.originalname) +
-    "-" +
-    Math.floor(10000000000 + Math.random() * 90000000000) +
-    ".jpg";
-
-  const params = {
-    ACL: "public-read",
-    Bucket: AWS_BUCKET_NAME,
-    Key: name, // File name you want to save as in S3
-    Body: file.buffer,
-  };
-
-  s3.upload(params, function (err, data) {
-    if (err) {
-      return next(new AppError("Could not upload image!"), 400);
-    }
-    console.log(`File uploaded successfully. ${data.Location}`);
-    req.body.imageCover = data.Location;
-
     next();
-  });
+  } else {
+    console.log("geldi");
+    const path = require("path");
+    const file = req.file;
+
+    let name =
+      path.basename(file.originalname) +
+      "-" +
+      Math.floor(10000000000 + Math.random() * 90000000000) +
+      ".jpg";
+
+    const params = {
+      ACL: "public-read",
+      Bucket: AWS_BUCKET_NAME,
+      Key: name, // File name you want to save as in S3
+      Body: file.buffer,
+    };
+
+    s3.upload(params, function (err, data) {
+      if (err) {
+        return next(new AppError("Could not upload image!"), 400);
+      }
+      console.log(`File uploaded successfully. ${data.Location}`);
+      req.body.imageCover = data.Location;
+
+      next();
+    });
+  }
 };
 
 exports.getAllEvents = factory.getAll(Event);

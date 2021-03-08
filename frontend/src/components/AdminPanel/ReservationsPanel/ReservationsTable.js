@@ -19,14 +19,11 @@ const ReservationsTable = (props) => {
     confirm();
     setSearchText(selectedKeys[0]);
     setSearchedColumn(dataIndex);
-    console.log("selectedkeys", selectedKeys);
-    console.log("data index", dataIndex);
   };
 
   useEffect(() => {
     setReservationsData([]);
     setReservationsData(props.reservations);
-    console.log(props.reservations);
   }, [props.reservations]);
 
   const handleReset = (clearFilters) => {
@@ -144,7 +141,6 @@ const ReservationsTable = (props) => {
       title: "Price",
       render: (record, key) => <div key={key}>{record.price}$</div>,
       key: "price",
-      //...this.getColumnSearchProps("address"),
       sorter: (a, b) => a.price - b.price,
     },
     {
@@ -155,7 +151,6 @@ const ReservationsTable = (props) => {
         </div>
       ),
       key: "tickets",
-      //...this.getColumnSearchProps("address"),
       sorter: (a, b) => a.duration - b.duration,
     },
 
@@ -178,7 +173,6 @@ const ReservationsTable = (props) => {
       ),
     },
   ];
-  console.log(reservationsData);
 
   return (
     <div className={classes.ReservationsTable}>
@@ -193,6 +187,7 @@ const ReservationsTable = (props) => {
               : ""
             : []
         }
+        loading={props.loadingTable}
       />
     </div>
   );

@@ -28,16 +28,21 @@ const UpdateEventForm = (props) => {
   const [form] = Form.useForm();
 
   useEffect(() => {
-    console.log(new Date(props.currentEvent.startDate));
     setStartDate(new Date(props.currentEvent.startDate));
   }, []);
 
   const onFinish = (values) => {
-    console.log(selectedImage);
-    console.log(imageDescription);
     values.event.startDate = startDate;
-
-    props.updateEvent(values.event, selectedImage, imageDescription);
+    if (!selectedImage) {
+      props.updateEvent(
+        values.event,
+        selectedImage,
+        imageDescription,
+        props.currentEvent.imageCover
+      );
+    } else {
+      props.updateEvent(values.event, selectedImage, imageDescription);
+    }
   };
 
   const onImageChange = (event) => {
@@ -46,8 +51,6 @@ const UpdateEventForm = (props) => {
     setSelectedImage(event.target.files[0]);
     setImageDescription(event.target.value);
   };
-
-  console.log(props.currentEvent);
 
   return (
     <div className={classes.EventFormDiv}>

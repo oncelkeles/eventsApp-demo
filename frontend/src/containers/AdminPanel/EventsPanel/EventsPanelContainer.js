@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { message } from "antd";
 
 import EventsPanel from "../../../components/AdminPanel/EventsPanel/EventsPanel";
-import services from "../../../utils/services";
+import services from "../../../apiService/services";
 import classes from "./EventsPanelContainer.module.css";
 import * as actionTypes from "../../../store/actions/action";
 import scrollOnClose from "../../../utils/scrollOnClose";
@@ -13,11 +13,14 @@ import EventDetails from "../../../components/EventDetails/EventDetails";
 const EventsPanelContainer = (props) => {
   const history = useHistory();
   const [events, setEvents] = useState({});
+  const [loadingTable, setLoadingTable] = useState(false);
 
   const fetchEvents = async () => {
     try {
+      setLoadingTable(true);
       const res = await services.get("/events");
       setEvents(res.data.data);
+      setLoadingTable(false);
       return res.data.data;
     } catch (err) {
       message.error("Could not fetch events! Please try reloading the page.");
@@ -27,8 +30,7 @@ const EventsPanelContainer = (props) => {
   const createEventHandler = async (
     values,
     selectedImage,
-    imageDescription,
-    startDate
+    imageDescription
   ) => {
     const data = new FormData();
     data.append("title", values.title);
@@ -50,6 +52,7 @@ const EventsPanelContainer = (props) => {
       const res = await services.post(url, data);
       history.push("/events-panel");
       window.location.reload();
+      message.success("Event created successfully!");
     } catch (err) {
       message.error("Could not create event, please try again!");
     }
@@ -58,7 +61,8 @@ const EventsPanelContainer = (props) => {
   const updateEventHandler = async (
     values,
     selectedImage,
-    imageDescription
+    imageDescription,
+    imgCover
   ) => {
     const data = new FormData();
     data.append("title", values.title);
@@ -68,18 +72,22 @@ const EventsPanelContainer = (props) => {
     data.append("duration", values.duration);
     data.append("summary", values.summary);
     data.append("startDate", values.startDate);
-    data.append("location.city", values.city);
-    data.append("location.venue", values.venue);
+    data.append("city", values.city);
+    data.append("venue", values.venue);
     data.append("maxPeople", values.maxPeople);
     if (selectedImage) {
       data.append("imageCover", selectedImage, imageDescription);
+    } else {
+      data.append("imageCover", imgCover);
     }
+
     const url = "/events/" + values.id;
 
     try {
       const res = await services.patch(url, data);
       history.push("/events-panel");
       window.location.reload();
+      message.success("Event updated successfully!");
     } catch (err) {
       message.error("Could not update event, please try again!");
     }
@@ -97,6 +105,7 @@ const EventsPanelContainer = (props) => {
         rerender={fetchEvents}
         updateEvent={updateEventHandler}
         createEvent={createEventHandler}
+        loadingTable={loadingTable}
       />
       {props.openDetails ? (
         <EventDetails

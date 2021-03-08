@@ -1,21 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
-import { useHistory } from "react-router-dom";
 import { message } from "antd";
 
-import services from "../../../utils/services";
+import services from "../../../apiService/services";
 import classes from "../EventsPanel/EventsPanelContainer.module.css";
-import * as actionTypes from "../../../store/actions/action";
-import scrollOnClose from "../../../utils/scrollOnClose";
-import EventDetails from "../../../components/EventDetails/EventDetails";
 import ReservationsTable from "../../../components/AdminPanel/ReservationsPanel/ReservationsTable";
 
 const EventsPanelContainer = (props) => {
-  const history = useHistory();
   const [reservations, setReservations] = useState([]);
+  const [loadingTable, setLoadingTable] = useState(false);
 
   const fetchReservations = async () => {
     try {
+      setLoadingTable(true);
       const res = await services.get("/reservations");
       setReservations(null);
       setReservations([]);
@@ -31,6 +27,7 @@ const EventsPanelContainer = (props) => {
           key: index,
         });
       });
+      setLoadingTable(false);
       return reservations;
     } catch (err) {
       message.error(
@@ -63,33 +60,10 @@ const EventsPanelContainer = (props) => {
         reservations={reservations}
         rerender={fetchReservations}
         deleteReservation={deleteReservationHandler}
+        loadingTable={loadingTable}
       />
-      {props.openDetails ? (
-        <EventDetails
-          open={props.openDetails}
-          closed={props.onDetailOpen}
-          scrollOnClose={scrollOnClose}
-        />
-      ) : null}
     </div>
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    eventDetails: state.eventDetails,
-    openDetails: state.openDetails,
-    scrollY: state.scrollY,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onDetailOpen: () => dispatch({ type: actionTypes.OPEN_DETAILS }),
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(EventsPanelContainer);
+export default EventsPanelContainer;

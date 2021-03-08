@@ -1,4 +1,5 @@
 import { Schema, model, Document, Types, Model } from "mongoose";
+import { Event } from "./eventModel.js";
 
 type ID = Types.ObjectId;
 

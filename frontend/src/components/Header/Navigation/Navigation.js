@@ -6,7 +6,7 @@ import { DownOutlined, UserOutlined } from "@ant-design/icons";
 
 import setLoggedOut from "../../../utils/setLoggedOut";
 import classes from "./Navigation.module.css";
-import services from "../../../utils/services";
+import services from "../../../apiService/services";
 
 const Navigation = (props) => {
   const [rerender, setRerender] = useState(false);
@@ -81,35 +81,6 @@ const Navigation = (props) => {
       </div>
     );
 
-  useEffect(() => {
-    console.log("hey");
-
-    /*if (props.loggedIn === "true") {
-      loginProfile = (
-        <div style={{ display: "block" }}>
-          <Button
-            className={classes.Button}
-            style={{ width: "60%", marginTop: "20px" }}
-            type="primary"
-            onClick={() => navigateRoute("/profile")}
-          >
-            Profile
-          </Button>
-        </div>
-      );
-    }
-
-    function checkUserData() {
-      const loggedIn = localStorage.getItem("loggedIn");
-    }
-
-    window.addEventListener("storage", checkUserData);
-
-    return () => {
-      window.removeEventListener("storage", checkUserData);
-    };*/
-  }, [props.loggedIn, props.userRole]);
-
   return (
     <div className={classes.Navigation}>
       <div
@@ -129,10 +100,8 @@ const Navigation = (props) => {
           Home
         </Button>
         <Button />
-        {localStorage.getItem("userRole") === "user" ? (
-          <Button className={classes.Button} type="link">
-            Events
-          </Button>
+        {localStorage.getItem("userRole") !== "admin" ? (
+          null
         ) : (
           <Button
             className={classes.Button}
@@ -142,7 +111,7 @@ const Navigation = (props) => {
             Events Panel
           </Button>
         )}
-        {localStorage.getItem("userRole") === "user" ? null : (
+        {localStorage.getItem("userRole") !== "admin" ? null : (
           <Button
             className={classes.Button}
             onClick={() => navigateRoute("/reservations-panel")}

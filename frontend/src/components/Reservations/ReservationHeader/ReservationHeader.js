@@ -5,7 +5,6 @@ import formatDate from "../../../utils/formatDate";
 import classes from "../Reservations.module.css";
 
 const ReservationHeader = (props) => {
-  console.log(props.reservation);
   return (
     <div className={classes.ReservationHeader}>
       <div>{props.title}</div>

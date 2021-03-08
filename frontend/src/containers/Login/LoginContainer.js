@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import Login from "../../components/Login/Login";
 import { message } from "antd";
 
-import services from "../../utils/services";
+import services from "../../apiService/services";
 import setLoggedIn from "../../utils/setLoggedIn";
 import classes from "./LoginContainer.module.css";
 import * as actionTypes from "../../store/actions/action";

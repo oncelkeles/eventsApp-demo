@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 
 import Profile from "../../components/Account/Profile/Profile";
 import classes from "./ProfileContainer.module.css";
-import services from "../../utils/services";
+import services from "../../apiService/services";
 import ProfileForm from "../../components/Account/ProfileForm/ProfileForm";
 import PasswordForm from "../../components/Account/PasswordForm/PasswordForm";
 import Reservations from "../../components/Reservations/Reservations";
@@ -27,7 +27,6 @@ const ProfileContainer = (props) => {
     try {
       const res = await services.get("/users/me");
       setUserInfo(res.data.data);
-      console.log(res);
     } catch (err) {
       message.error("Cannot get user information! Please try logging again!");
       setLoggedOut(true);
@@ -52,7 +51,6 @@ const ProfileContainer = (props) => {
       await fetchReservations();
       setLoading(false);
     }
-    console.log(userInfo);
   }, []);
 
   const onFinishInfoUpdate = async (user) => {
@@ -84,7 +82,6 @@ const ProfileContainer = (props) => {
   };
 
   const scrollOnClose = (posY) => {
-    console.log(window.pageYOffset);
     setTimeout(() => {
       window.scrollTo(0, props.scrollY);
     }, 500);

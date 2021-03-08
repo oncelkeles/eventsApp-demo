@@ -1,6 +1,5 @@
 const path = require("path");
 
-const proxy = require("http-proxy-middleware");
 const express = require("express");
 const morgan = require("morgan");
 const helmet = require("helmet");
@@ -68,8 +67,6 @@ app.use(
 );
 
 app.use(compression());
-
-app.use(proxy(["/"], { target: "http://localhost:5000" }));
 
 app.use("/api/v1/events", eventRouter);
 app.use("/api/v1/users", userRouter);

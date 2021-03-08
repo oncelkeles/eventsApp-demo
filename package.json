@@ -1,5 +1,5 @@
 {
-  "name": "Events App",
+  "name": "events-api-oncel",
   "version": "3.0.0",
   "description": "Demo app with node js api and react frontend",
   "engines": {

@@ -1,0 +1,5 @@
+.Events {
+  display: inline-grid;
+  width: 90%;
+  grid-template-columns: 1fr 1fr 1fr;
+}

@@ -1,0 +1,16 @@
+.HomeContainer {
+  display: flex;
+  height: auto;
+  align-items: center;
+  align-content: space-evenly;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  min-height: 700px;
+  overflow: hidden;
+  padding: 1em;
+  background-color: #f0f5ff;
+}
+
+.HomeContainer > div {
+  margin: 12px 0 0 12px;
+}

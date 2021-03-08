@@ -1,0 +1,15 @@
+.Footer {
+  height: 60px;
+  background-color: #1d1d1d;
+  bottom: 0;
+}
+
+.FooterDiv {
+  padding: 1rem;
+  background-color: rgb(235, 195, 64);
+  position: relative;
+  height: 40px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}

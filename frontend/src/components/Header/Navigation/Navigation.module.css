@@ -1,0 +1,13 @@
+.Navigation {
+  width: 100%;
+  display: flex;
+  margin: auto;
+  font-size: 18px;
+  right:0;
+  height: 100%;
+}
+
+.Button {
+  font-size: 20px;
+  height: 40px;
+}

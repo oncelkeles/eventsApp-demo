@@ -6,7 +6,7 @@
     "node": "10.x"
   },
   "scripts": {
-    "start": "cd backend/ && npm install && server.js",
+    "start": "cd backend/ && npm install && backend/server.js",
     "build": "cd frontend/ && npm install && npm run build"
   },
   "cacheDirectories": [

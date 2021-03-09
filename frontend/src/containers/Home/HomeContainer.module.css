@@ -1,3 +1,8 @@
+@value colors: "../../utils/colors.module.css";
+
+@value primary, secondary from colors;
+
+
 .HomeContainer {
   display: flex;
   height: auto;
@@ -8,7 +13,8 @@
   min-height: 700px;
   overflow: hidden;
   padding: 1em;
-  background-color: #f0f5ff;
+  /*background-color: primary;*/
+  background: none;
 }
 
 .HomeContainer > div {

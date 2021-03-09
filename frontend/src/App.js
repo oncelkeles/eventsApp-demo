@@ -16,6 +16,7 @@ import Footer from "./components/Footer/Footer";
 import ProfileContainer from "./containers/Profile/ProfileContainer";
 import EventsPanelContainer from "./containers/AdminPanel/EventsPanel/EventsPanelContainer";
 import ReservationsPanelContainer from "./containers/AdminPanel/ReservationsPanel/ReservationsPanelContainer";
+import CheckoutContainer from "./containers/Checkout/CheckoutContainer";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(
@@ -46,6 +47,11 @@ function App() {
       exact: true,
       render: () => <LoginContainer loggedIn={setLoggedIn} />,
     },
+    {
+      path: "/checkout",
+      exact: true,
+      render: () => <CheckoutContainer loggedIn={setLoggedIn} />,
+    },
   ];
 
   // routes defined here again in order to rerender navigation items
@@ -72,6 +78,11 @@ function App() {
         exact: true,
         render: () => <LoginContainer loggedIn={setLoggedIn} />,
       },
+      {
+        path: "/checkout",
+        exact: true,
+        render: () => <CheckoutContainer loggedIn={setLoggedIn} />,
+      },
     ];
   }, [isLoggedIn]);
 
@@ -91,7 +102,7 @@ function App() {
           ))}
         </Switch>
       </Router>
-      <div style={{ height: "40px", backgroundColor: "#f0f5ff" }} />
+
       <Footer />
     </div>
   );

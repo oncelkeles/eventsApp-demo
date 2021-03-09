@@ -54,8 +54,8 @@ const Navigation = (props) => {
       <Dropdown overlay={menu}>
         <Button
           className={classes.Button}
-          style={{ width: "100px", marginTop: "20px" }}
-          type="primary"
+          style={{ width: "100px", marginTop: "20px"}}
+          type="link"
         >
           User <DownOutlined />
         </Button>
@@ -66,15 +66,15 @@ const Navigation = (props) => {
           <Button
             className={classes.Button}
             style={{ width: "60%", marginTop: "10px" }}
-            type="primary"
             onClick={() => navigateRoute("/login")}
+            type="link"
           >
             Login
           </Button>
         </div>
         <span
           onClick={() => navigateRoute("/login")}
-          style={{ fontSize: "11px", padding: "5px", cursor: "pointer" }}
+          style={{color:"white", fontSize: "11px", padding: "5px", cursor: "pointer" }}
         >
           or sign up!
         </span>
@@ -100,9 +100,7 @@ const Navigation = (props) => {
           Home
         </Button>
         <Button />
-        {localStorage.getItem("userRole") !== "admin" ? (
-          null
-        ) : (
+        {localStorage.getItem("userRole") !== "admin" ? null : (
           <Button
             className={classes.Button}
             onClick={() => navigateRoute("/events-panel")}

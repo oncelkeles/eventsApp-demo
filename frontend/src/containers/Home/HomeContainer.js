@@ -9,7 +9,11 @@ import EventDetails from "../../components/EventDetails/EventDetails";
 import * as actionTypes from "../../store/actions/action";
 import scrollOnClose from "../../utils/scrollOnClose";
 
+import background from "../../images/home-background.jpg";
+
 const { Meta } = Card;
+
+const cardStyle = { width: "30vw", height: "300px", marginTop: 16 };
 
 const HomeContainer = (props) => {
   const [events, setEvents] = useState(null);
@@ -26,7 +30,18 @@ const HomeContainer = (props) => {
   }, []);
 
   return (
-    <div>
+    <div style={{ display: "flex" }}>
+      <img
+        style={{
+          width: "100vw",
+          height: "100vh",
+          position: "fixed",
+          opacity: "0.9",
+          zIndex: "-1",
+        }}
+        src={background}
+        alt={"Photo by Vishnu R Nair from Pexels"}
+      />
       <div
         className={classes.HomeContainer}
         style={
@@ -37,7 +52,7 @@ const HomeContainer = (props) => {
       >
         {loading ? (
           <>
-            <Card style={{ width: "27%", marginTop: 16 }} loading={loading}>
+            <Card style={cardStyle} loading={loading}>
               <Meta
                 avatar={
                   <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
@@ -46,7 +61,7 @@ const HomeContainer = (props) => {
                 description="This is the description"
               />
             </Card>
-            <Card style={{ width: "27%", marginTop: 16 }} loading={loading}>
+            <Card style={cardStyle} loading={loading}>
               <Meta
                 avatar={
                   <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
@@ -55,7 +70,10 @@ const HomeContainer = (props) => {
                 description="This is the description"
               />
             </Card>
-            <Card style={{ width: "27%", marginTop: 16 }} loading={loading}>
+            <Card
+              style={cardStyle}
+              loading={loading}
+            >
               <Meta
                 avatar={
                   <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
@@ -64,7 +82,7 @@ const HomeContainer = (props) => {
                 description="This is the description"
               />
             </Card>
-            <Card style={{ width: "27%", marginTop: 16 }} loading={loading}>
+            <Card style={cardStyle} loading={loading}>
               <Meta
                 avatar={
                   <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
@@ -73,7 +91,7 @@ const HomeContainer = (props) => {
                 description="This is the description"
               />
             </Card>
-            <Card style={{ width: "27%", marginTop: 16 }} loading={loading}>
+            <Card style={cardStyle} loading={loading}>
               <Meta
                 avatar={
                   <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
@@ -82,7 +100,7 @@ const HomeContainer = (props) => {
                 description="This is the description"
               />
             </Card>
-            <Card style={{ width: "27%", marginTop: 16 }} loading={loading}>
+            <Card style={cardStyle} loading={loading}>
               <Meta
                 avatar={
                   <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />

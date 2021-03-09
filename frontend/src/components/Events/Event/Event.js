@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Button } from "antd";
+import Fonts from "react-font";
 
 import scrollToInfo from "../../../utils/scrollToInfo";
 import classes from "./Event.module.css";
@@ -12,47 +13,64 @@ const Event = (props) => {
   return (
     <div className={classes.EventBox}>
       <div className={classes.Event}>
-        <div style={{ height: "2%" }} />
-        <div style={{ height: "18%", paddingRight: "4px", paddingLeft: "4px" }}>
-          <h3>{event.title}</h3>
-          <span style={{ fontSize: "12px" }}>{event.description}</span>
-        </div>
-        <div style={{ height: "5%" }} />
-        <div style={{ height: "54%" }} className={classes.Image}>
+        <div style={{ borderBottom: "2px solid black" }}>
           <img
             className={classes.Image}
             src={event.imageCover}
             alt={event.title}
           />
         </div>
-        <div style={{ height: "2%" }} />
-        <div style={{ display: "grid", height: "21%" }}>
-          <div className={classes.Info}>
-            <p style={{ textAlign: "center" }}>1 Person: &nbsp;</p>
-            <p className={classes.InfoPrg}>{event.price} $</p>
-          </div>
-          <div className={classes.Info}>
-            <p style={{ textAlign: "center" }}>Max. Capacity: &nbsp;</p>
-            <p className={classes.InfoPrg}>{event.maxPeople} people</p>
-          </div>
-          <div className={classes.Info}>
-            <p style={{ textAlign: "center" }}>Seats left: &nbsp;</p>
-            <p className={classes.InfoPrg}>{event.seatsLeft}</p>
-          </div>
-          <div style={{ alignItems: "center", justifyContent: "center", marginTop:"-9px" }}>
-            <Button
-              onClick={() => {
-                props.onEventClicked(props.event);
-                props.onDetailOpen();
-                props.onModalOpen(window.pageYOffset);
-                scrollToInfo(window.pageYOffset);
-              }}
-              className={classes.Button}
+        {/*<div style={{ height: "4px", width: "100%" }} />*/}
+        <Fonts family="Rubik">
+          <div>
+            <div
+              style={{ height: "18%", paddingRight: "4px", paddingLeft: "4px" }}
             >
-              Details
-            </Button>
+              <h3>
+                <strong style={{ color: "white" }}>{event.title}</strong>
+              </h3>
+              <span style={{ fontSize: "12px" }}>{event.description}</span>
+            </div>
+            <div style={{ height: "20px", width: "80%" }} />
+
+            <div style={{ display: "grid", height: "66px" }}>
+              <div className={classes.Info}>
+                <span style={{ textAlign: "center" }}>1 Person: &nbsp;</span>
+                <span className={classes.InfoPrg}>{event.price} $</span>
+              </div>
+              <div className={classes.Info}>
+                <span style={{ textAlign: "center" }}>
+                  Max. Capacity: &nbsp;
+                </span>
+                <span className={classes.InfoPrg}>
+                  {event.maxPeople} people
+                </span>
+              </div>
+              <div className={classes.Info}>
+                <span style={{ textAlign: "center" }}>Seats left: &nbsp;</span>
+                <span className={classes.InfoPrg}>{event.seatsLeft}</span>
+              </div>
+              {/*<div
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                marginTop: "2px",
+              }}
+            ></div>*/}
+            </div>
           </div>
-        </div>
+        </Fonts>
+        <Button
+          onClick={() => {
+            props.onEventClicked(props.event);
+            props.onDetailOpen();
+            props.onModalOpen(window.pageYOffset);
+            scrollToInfo(window.pageYOffset);
+          }}
+          className={classes.Button}
+        >
+          <strong>Details</strong>
+        </Button>
       </div>
     </div>
   );

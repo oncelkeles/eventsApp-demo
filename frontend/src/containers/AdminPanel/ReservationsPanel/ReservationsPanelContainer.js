@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { message } from "antd";
 
 import services from "../../../apiService/services";
-import classes from "../EventsPanel/EventsPanelContainer.module.css";
+import classes from "../PanelsContainer.module.css";
 import ReservationsTable from "../../../components/AdminPanel/ReservationsPanel/ReservationsTable";
+import background from "../../../images/reservation-background4.jpg";
 
 const EventsPanelContainer = (props) => {
   const [reservations, setReservations] = useState([]);
@@ -56,6 +57,17 @@ const EventsPanelContainer = (props) => {
 
   return (
     <div className={classes.EventsPanelContainer}>
+      <img
+        style={{
+          width: "100vw",
+          height: "100%",
+          position: "fixed",
+          opacity: "0.9",
+          zIndex: "-1",
+        }}
+        src={background}
+        alt={"https://www.freepik.com/photos/border by kstudio"}
+      />
       <ReservationsTable
         reservations={reservations}
         rerender={fetchReservations}

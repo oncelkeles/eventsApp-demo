@@ -8,6 +8,7 @@ import services from "../../apiService/services";
 import setLoggedIn from "../../utils/setLoggedIn";
 import classes from "./LoginContainer.module.css";
 import * as actionTypes from "../../store/actions/action";
+import background from "../../images/login-background2.jpg";
 
 const LoginContainer = (props) => {
   const history = useHistory();
@@ -40,6 +41,18 @@ const LoginContainer = (props) => {
   };
   return (
     <div className={classes.LoginContainer}>
+      <img
+        style={{
+          width: "100vw",
+          height: "100%",
+          position: "fixed",
+          opacity: "0.9",
+          zIndex: "-1",
+        }}
+        src={background}
+        alt={"login-background"}
+      />
+
       <div style={{ height: "60px" }} />
       <Login onFinishSignup={submitSignup} onFinishLogin={submitLogin} />
     </div>

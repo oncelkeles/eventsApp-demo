@@ -5,10 +5,12 @@ import { message } from "antd";
 
 import EventsPanel from "../../../components/AdminPanel/EventsPanel/EventsPanel";
 import services from "../../../apiService/services";
-import classes from "./EventsPanelContainer.module.css";
+import classes from "../PanelsContainer.module.css";
 import * as actionTypes from "../../../store/actions/action";
 import scrollOnClose from "../../../utils/scrollOnClose";
 import EventDetails from "../../../components/EventDetails/EventDetails";
+
+import background from "../../../images/event-background.jpg";
 
 const EventsPanelContainer = (props) => {
   const history = useHistory();
@@ -100,6 +102,17 @@ const EventsPanelContainer = (props) => {
 
   return (
     <div className={classes.EventsPanelContainer}>
+      <img
+        style={{
+          width: "100vw",
+          height: "100%",
+          position: "fixed",
+          opacity: "0.9",
+          zIndex: "-1",
+        }}
+        src={background}
+        alt={"Photo by Vishnu R Nair from Pexels"}
+      />
       <EventsPanel
         events={events}
         rerender={fetchEvents}

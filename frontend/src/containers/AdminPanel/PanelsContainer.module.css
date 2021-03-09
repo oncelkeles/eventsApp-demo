@@ -1,0 +1,13 @@
+@value colors: "../../utils/colors.module.css";
+
+@value primary, secondary from colors;
+
+.EventsPanelContainer {
+  min-height: 800px;
+  /*background-color: primary;*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: none;
+}

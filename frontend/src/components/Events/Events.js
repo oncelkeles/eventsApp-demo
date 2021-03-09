@@ -17,7 +17,7 @@ const Events = (props) => {
     }
   }
 
-  return <div style={style} className={classes.Events}>{events}</div>;
+  return <div style={style} className={classes.Events}>{events}{events}</div>;
 };
 
 export default Events;

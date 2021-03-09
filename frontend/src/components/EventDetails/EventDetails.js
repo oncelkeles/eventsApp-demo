@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import Fonts from "react-font";
 import {
@@ -18,6 +19,7 @@ import formatDate from "../../utils/formatDate";
 import classes from "./EventDetails.module.css";
 
 const EventDetails = (props) => {
+  const history = useHistory();
   const eventBox = useRef(null);
   let eventData = props.eventDetails ? props.eventDetails : {};
 
@@ -117,7 +119,7 @@ const EventDetails = (props) => {
         </Fonts>
         <div style={{ height: "40px" }} />
         {localStorage.getItem("userRole") === "user" ? (
-          <Button className={classes.Button}>BOOK NOW!</Button>
+          <Button onClick={() => history.push("/checkout")} className={classes.Button}>BOOK NOW!</Button>
         ) : null}
       </div>
     </div>

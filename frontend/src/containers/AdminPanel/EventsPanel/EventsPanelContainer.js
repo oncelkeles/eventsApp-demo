@@ -14,6 +14,7 @@ import background from "../../../images/event-background.jpg";
 
 const EventsPanelContainer = (props) => {
   const history = useHistory();
+  const [reload, setReload] = useState(false);
   const [events, setEvents] = useState({});
   const [loadingTable, setLoadingTable] = useState(false);
 
@@ -26,6 +27,18 @@ const EventsPanelContainer = (props) => {
       return res.data.data;
     } catch (err) {
       message.error("Could not fetch events! Please try reloading the page.");
+    }
+  };
+
+  const deleteEventHandler = async (eventRecord) => {
+    try {
+      const url = "/events/" + eventRecord.id;
+      const res = await services.delete(url);
+      message.success("Event deleted successfully.");
+      setReload(!reload);
+      props.rerender();
+    } catch (err) {
+      message.error("Could not delete the event! Try again.");
     }
   };
 
@@ -53,7 +66,7 @@ const EventsPanelContainer = (props) => {
     try {
       const res = await services.post(url, data);
       history.push("/events-panel");
-      window.location.reload();
+      setReload(!reload);
       message.success("Event created successfully!");
     } catch (err) {
       message.error("Could not create event, please try again!");
@@ -88,7 +101,7 @@ const EventsPanelContainer = (props) => {
     try {
       const res = await services.patch(url, data);
       history.push("/events-panel");
-      window.location.reload();
+      setReload(!reload);
       message.success("Event updated successfully!");
     } catch (err) {
       message.error("Could not update event, please try again!");
@@ -98,7 +111,7 @@ const EventsPanelContainer = (props) => {
   useEffect(async () => {
     const temp = fetchEvents();
     setEvents(temp);
-  }, []);
+  }, [reload]);
 
   return (
     <div className={classes.EventsPanelContainer}>
@@ -119,6 +132,7 @@ const EventsPanelContainer = (props) => {
         updateEvent={updateEventHandler}
         createEvent={createEventHandler}
         loadingTable={loadingTable}
+        deleteEvent={deleteEventHandler}
       />
       {props.openDetails ? (
         <EventDetails

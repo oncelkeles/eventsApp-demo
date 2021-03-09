@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {  message } from "antd";
+import { message } from "antd";
 
 import classes from "./EventsPanel.module.css";
 import EventsTable from "./EventsTable/EventsTable";
@@ -12,24 +12,11 @@ const EventsPanel = (props) => {
   const [showComponent, setShowComponent] = useState(0);
   const [currentEvent, setCurrentEvent] = useState(null);
 
-
   const showComponentHandler = (componentNumber, selectedEvent) => {
     if (selectedEvent) {
       setCurrentEvent(selectedEvent);
     } else setCurrentEvent(null);
     setShowComponent(componentNumber);
-  };
-
-  const deleteEventHandler = async (eventRecord) => {
-    try {
-      const url = "/events/" + eventRecord.id;
-      const res = await services.delete(url);
-      message.success("Event deleted successfully.");
-      window.location.reload();
-      props.rerender();
-    } catch (err) {
-      message.error("Could not delete the event! Try again.");
-    }
   };
 
   return (
@@ -48,7 +35,7 @@ const EventsPanel = (props) => {
           <EventsTable
             changeComponent={showComponentHandler}
             events={props.events}
-            deleteEvent={deleteEventHandler}
+            deleteEvent={props.deleteEvent}
             loadingTable={props.loadingTable}
           />
         ) : null}

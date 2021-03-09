@@ -7,6 +7,7 @@ import ReservationsTable from "../../../components/AdminPanel/ReservationsPanel/
 import background from "../../../images/reservation-background4.jpg";
 
 const EventsPanelContainer = (props) => {
+  const [reload, setReload] = useState(false);
   const [reservations, setReservations] = useState([]);
   const [loadingTable, setLoadingTable] = useState(false);
 
@@ -42,7 +43,7 @@ const EventsPanelContainer = (props) => {
       const url = "/reservations/" + reservationRecord.id;
       const res = await services.delete(url);
       message.success("Reservation deleted successfully.");
-      window.location.reload();
+      setReload(!reload);
       const temp = await fetchReservations();
       setReservations(temp);
     } catch (err) {
@@ -53,7 +54,7 @@ const EventsPanelContainer = (props) => {
   useEffect(async () => {
     const temp = await fetchReservations();
     setReservations(temp);
-  }, []);
+  }, [reload]);
 
   return (
     <div className={classes.EventsPanelContainer}>

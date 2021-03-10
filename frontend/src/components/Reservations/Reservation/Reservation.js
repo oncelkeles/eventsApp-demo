@@ -16,11 +16,11 @@ const Reservation = (props) => {
       <Fonts family="Rubik">
         <div className={classes.Reservation}>
           <div className={classes.Header}>
-            <div style={{ height: "20%", fontSize: "20px" }}>
+            <div className={classes.Title}>
               <strong>{props.reservation.event.title}</strong>
             </div>
 
-            <div style={{ height: "80%" }} className={classes.Image}>
+            <div  className={classes.ImageDiv}>
               <img
                 className={classes.Image}
                 src={props.reservation.event.imageCover}

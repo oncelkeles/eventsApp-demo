@@ -77,6 +77,13 @@
 }
 
 @media (max-width: 1000px) {
+  .EventDetailsPage {
+    min-height: 700px;
+    width: 90%;
+    left: 5%;
+    top: 5%;
+  }
+
   .Image {
     display: flex;
     object-fit: contain;

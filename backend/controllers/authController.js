@@ -84,7 +84,7 @@ exports.signup = catchAsync(async (req, res, next) => {
 
   res.cookie("jwt", token, cookieOptions);
 
-  cookie.res.status(200).json({
+  res.status(200).json({
     status: "Success",
     token,
     data: { newUser },

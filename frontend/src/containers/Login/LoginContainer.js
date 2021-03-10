@@ -15,7 +15,8 @@ const LoginContainer = (props) => {
   const submitSignup = async (user) => {
     try {
       const res = await services.post("/users/signup", user.user);
-      const userData = res.data.data.user;
+      console.log(res);
+      const userData = res.data.data.newUser;
       setLoggedIn(userData.name, userData.email, userData.role);
       props.loggedIn(true);
       props.setUserRole(userData.role);

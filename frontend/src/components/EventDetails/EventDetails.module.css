@@ -60,6 +60,10 @@
   width: 20%;
 }
 
+.IconFont {
+  font-size: 40px;
+}
+
 .Info {
   display: flex;
   flex-direction: column;
@@ -70,4 +74,24 @@
 
 .InfoSpan {
   font-size: 20px;
+}
+
+@media (max-width: 1000px) {
+  .Image {
+    display: flex;
+    object-fit: contain;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: #151515;
+  }
+
+  .IconFont {
+    font-size: 20px;
+  }
+
+  .InfoSpan {
+    font-size: 16px;
+  }
 }

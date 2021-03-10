@@ -57,7 +57,7 @@ const EventDetails = (props) => {
           >
             <div className={classes.Information}>
               <div className={classes.Icons}>
-                <FaCalendarAlt style={{ fontSize: "40px" }} />
+                <FaCalendarAlt className={classes.IconFont}  />
               </div>
               <div className={classes.Info}>
                 <span className={classes.InfoSpan}>
@@ -67,7 +67,7 @@ const EventDetails = (props) => {
             </div>
             <div className={classes.Information}>
               <div className={classes.Icons}>
-                <FaMapMarkedAlt style={{ fontSize: "40px" }} />
+                <FaMapMarkedAlt className={classes.IconFont} />
               </div>
               <div className={classes.Info}>
                 <span className={classes.InfoSpan}>
@@ -77,7 +77,7 @@ const EventDetails = (props) => {
             </div>
             <div className={classes.Information}>
               <div className={classes.Icons}>
-                <FaClock style={{ fontSize: "40px" }} />
+                <FaClock className={classes.IconFont} />
               </div>
               <div className={classes.Info}>
                 <span className={classes.InfoSpan}>
@@ -87,7 +87,7 @@ const EventDetails = (props) => {
             </div>
             <div className={classes.Information}>
               <div className={classes.Icons}>
-                <FaUserFriends style={{ fontSize: "40px" }} />
+                <FaUserFriends className={classes.IconFont} />
               </div>
               <div className={classes.Info}>
                 <span className={classes.InfoSpan}>
@@ -97,7 +97,7 @@ const EventDetails = (props) => {
             </div>
             <div className={classes.Information}>
               <div className={classes.Icons}>
-                <FaMoneyBill style={{ fontSize: "40px" }} />
+                <FaMoneyBill className={classes.IconFont} />
               </div>
               <div className={classes.Info}>
                 <span className={classes.InfoSpan}>
@@ -107,7 +107,7 @@ const EventDetails = (props) => {
             </div>
             <div className={classes.Information}>
               <div className={classes.Icons}>
-                <FaChair style={{ fontSize: "40px" }} />
+                <FaChair className={classes.IconFont} />
               </div>
               <div className={classes.Info}>
                 <span className={classes.InfoSpan}>

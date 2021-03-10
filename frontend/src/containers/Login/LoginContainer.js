@@ -22,6 +22,7 @@ const LoginContainer = (props) => {
       props.setUserRole(userData.role);
       history.push("/");
       window.location.reload();
+      message.success("Signed up successfully!");
     } catch (err) {
       message.error("Cannot sign up! Try with a different e-mail address.");
     }
@@ -35,6 +36,7 @@ const LoginContainer = (props) => {
       props.setUserRole(userData.role);
       history.push("/");
       window.location.reload();
+      message.success("Logged in successfully!");
     } catch (err) {
       message.error("Cannot login! Check your credentials.");
     }

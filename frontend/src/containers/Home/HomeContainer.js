@@ -39,7 +39,7 @@ const HomeContainer = (props) => {
       >
         {loading ? (
           <>
-            <Card style={cardStyle} loading={loading}>
+            <Card className={classes.CardStyle} loading={loading}>
               <Meta
                 avatar={
                   <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
@@ -48,7 +48,7 @@ const HomeContainer = (props) => {
                 description="This is the description"
               />
             </Card>
-            <Card style={cardStyle} loading={loading}>
+            <Card className={classes.CardStyle} loading={loading}>
               <Meta
                 avatar={
                   <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
@@ -57,7 +57,7 @@ const HomeContainer = (props) => {
                 description="This is the description"
               />
             </Card>
-            <Card style={cardStyle} loading={loading}>
+            <Card className={classes.CardStyle} loading={loading}>
               <Meta
                 avatar={
                   <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
@@ -66,7 +66,7 @@ const HomeContainer = (props) => {
                 description="This is the description"
               />
             </Card>
-            <Card style={cardStyle} loading={loading}>
+            <Card className={classes.CardStyle} loading={loading}>
               <Meta
                 avatar={
                   <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
@@ -75,7 +75,7 @@ const HomeContainer = (props) => {
                 description="This is the description"
               />
             </Card>
-            <Card style={cardStyle} loading={loading}>
+            <Card className={classes.CardStyle} loading={loading}>
               <Meta
                 avatar={
                   <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
@@ -84,7 +84,7 @@ const HomeContainer = (props) => {
                 description="This is the description"
               />
             </Card>
-            <Card style={cardStyle} loading={loading}>
+            <Card className={classes.CardStyle} loading={loading}>
               <Meta
                 avatar={
                   <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />

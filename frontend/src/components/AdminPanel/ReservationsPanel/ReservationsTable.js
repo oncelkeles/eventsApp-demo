@@ -197,7 +197,7 @@ const ReservationsTable = (props) => {
       <Table
         style={{ width: "100%" }}
         columns={columns}
-        scroll
+        scroll={{ x: true }}
         dataSource={
           reservationsData
             ? reservationsData.length > 0

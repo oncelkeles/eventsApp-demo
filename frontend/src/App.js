@@ -17,11 +17,22 @@ import ProfileContainer from "./containers/Profile/ProfileContainer";
 import EventsPanelContainer from "./containers/AdminPanel/EventsPanel/EventsPanelContainer";
 import ReservationsPanelContainer from "./containers/AdminPanel/ReservationsPanel/ReservationsPanelContainer";
 import CheckoutContainer from "./containers/Checkout/CheckoutContainer";
+import MobileNavigation from "./components/Header/MobileNavigation/MobileNavigation";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(
     localStorage.getItem("loggedIn") === "true" ? true : false
   );
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
+
+  const openMobileMenuHandler = () => {
+    setShowMobileMenu(true);
+  };
+
+  const closeMobileMenuHandler = () => {
+    setShowMobileMenu(false);
+  };
+
   const setLoggedIn = (loginBool) => {
     setIsLoggedIn(loginBool);
   };
@@ -89,7 +100,11 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Header loggedIn={isLoggedIn} />
+        <MobileNavigation
+          closeMenu={closeMobileMenuHandler}
+          show={showMobileMenu}
+        />
+        <Header loggedIn={isLoggedIn} openMenu={openMobileMenuHandler} />
         <div style={{ height: "80px" }} />
         <Switch>
           {routes.map((route) => (

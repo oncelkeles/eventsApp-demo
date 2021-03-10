@@ -19,9 +19,22 @@
   min-height: 700px;
   overflow: hidden;
   padding: 1em;
-
 }
 
 .HomeContainer > div {
   margin: 12px 0 0 12px;
+}
+
+.CardStyle {
+  width: 30vw;
+  height: 300px;
+  margin-top: 16px;
+}
+
+@media (max-width: 1000px) {
+  .CardStyle {
+    width: 90vw;
+    height: 300px;
+    margin-top: 16px;
+  }
 }

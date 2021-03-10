@@ -180,7 +180,7 @@ const EventsTable = (props) => {
       <Table
         style={{ width: "100%" }}
         columns={columns}
-        scroll
+        scroll={{ x: true }}
         dataSource={eventsData.length > 0 ? eventsData : ""}
         loading={props.loadingTable}
       />

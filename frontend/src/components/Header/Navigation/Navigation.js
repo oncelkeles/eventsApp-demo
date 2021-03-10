@@ -9,10 +9,25 @@ import classes from "./Navigation.module.css";
 import services from "../../../apiService/services";
 
 const Navigation = (props) => {
-  const [rerender, setRerender] = useState(false);
   const history = useHistory();
 
+  const [rerender, setRerender] = useState(false);
+  const [matches, setMatches] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 1000px)");
+    console.log(media);
+    if (media.matches) {
+      setMatches(true);
+    } else {
+      setMatches(false);
+    }
+  }, []);
+
   const navigateRoute = (route) => {
+    if (props.onMobile) {
+      props.clicked();
+    }
     history.push(route);
   };
 
@@ -51,18 +66,22 @@ const Navigation = (props) => {
 
   let loginProfile =
     localStorage.getItem("loggedIn") === "true" ? (
-      <Dropdown overlay={menu}>
-        <Button
-          className={classes.Button}
-          style={{ width: "100px", marginTop: "20px"}}
-          type="link"
-        >
-          User <DownOutlined />
-        </Button>
-      </Dropdown>
+      matches ? (
+        menu
+      ) : (
+        <Dropdown overlay={menu} className={classes.Dropdown}>
+          <Button
+            className={classes.Button}
+            style={{ width: "100px", marginTop: "20px" }}
+            type="link"
+          >
+            User <DownOutlined />
+          </Button>
+        </Dropdown>
+      )
     ) : (
       <div>
-        <div style={{ display: "block", marginTop: "auto" }}>
+        <div className={classes.LoginDiv}>
           <Button
             className={classes.Button}
             style={{ width: "60%", marginTop: "10px" }}
@@ -74,7 +93,7 @@ const Navigation = (props) => {
         </div>
         <span
           onClick={() => navigateRoute("/login")}
-          style={{color:"white", fontSize: "11px", padding: "5px", cursor: "pointer" }}
+          className={classes.SignUpText}
         >
           or sign up!
         </span>
@@ -83,15 +102,7 @@ const Navigation = (props) => {
 
   return (
     <div className={classes.Navigation}>
-      <div
-        style={{
-          width: "80%",
-          height: "100%",
-          alignItems: "center",
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
+      <div className={classes.NavInSite}>
         <Button
           onClick={() => navigateRoute("/")}
           className={classes.Button}
@@ -119,9 +130,7 @@ const Navigation = (props) => {
           </Button>
         )}
       </div>
-      <div style={{ width: "20%", height: "100%", display: "grid" }}>
-        {loginProfile}
-      </div>
+      <div className={classes.ProfileDiv}>{loginProfile}</div>
     </div>
   );
 };

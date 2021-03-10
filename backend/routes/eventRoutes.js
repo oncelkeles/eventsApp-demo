@@ -30,6 +30,7 @@ router
     authController.restrict("admin"),
     eventController.uploadForm,
     eventController.createLocation,
+    eventController.deleteOldImage,
     eventController.uploadImageCover,
     eventController.updateEvent
   );

@@ -33,21 +33,11 @@ const UpdateEventForm = (props) => {
 
   const onFinish = (values) => {
     values.event.startDate = startDate;
-    if (!selectedImage) {
-      props.updateEvent(
-        values.event,
-        selectedImage,
-        imageDescription,
-        props.currentEvent.imageCover
-      );
-    } else {
-      props.updateEvent(values.event, selectedImage, imageDescription);
-    }
+    props.updateEvent(values.event, selectedImage, imageDescription);
   };
 
   const onImageChange = (event) => {
     event.preventDefault();
-
     setSelectedImage(event.target.files[0]);
     setImageDescription(event.target.value);
   };

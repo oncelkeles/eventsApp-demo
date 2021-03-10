@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import { message } from "antd";
 
 import classes from "./EventsPanel.module.css";
 import EventsTable from "./EventsTable/EventsTable";
-import services from "../../../apiService/services";
 import UpdateEventForm from "./UpdateEventForm/UpdateEventForm";
 import AddEventForm from "./AddEventForm/AddEventForm";
 
@@ -43,16 +41,23 @@ const EventsPanel = (props) => {
           <UpdateEventForm
             currentEvent={currentEvent}
             changeComponent={showComponentHandler}
-            updateEvent={props.updateEvent}
+            updateEvent={(record, selectedImage, imageDescription) => {
+              props.updateEvent(record, selectedImage, imageDescription);
+              setShowComponent(0);
+            }}
           />
         ) : null}
         {showComponent === 2 ? (
           <AddEventForm
             changeComponent={showComponentHandler}
-            createEvent={props.createEvent}
+            createEvent={(record, selectedImage, imageDescription) => {
+              props.createEvent(record, selectedImage, imageDescription);
+              setShowComponent(0);
+            }}
           />
         ) : null}
       </div>
+      <div style={{ height: "20px" }} />
     </div>
   );
 };

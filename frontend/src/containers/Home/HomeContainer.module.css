@@ -2,6 +2,12 @@
 
 @value primary, secondary from colors;
 
+.HomeBackground {
+  background-image: url("https://eventsdemobucket.s3.us-east-2.amazonaws.com/images/home-background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
 
 .HomeContainer {
   display: flex;
@@ -13,8 +19,7 @@
   min-height: 700px;
   overflow: hidden;
   padding: 1em;
-  /*background-color: primary;*/
-  background: none;
+
 }
 
 .HomeContainer > div {

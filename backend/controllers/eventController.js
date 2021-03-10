@@ -82,14 +82,12 @@ exports.uploadForm = upload.single("photo");
 exports.createLocation = async (req, res, next) => {
   let city;
   let venue;
-  console.log(req.body);
   if (req.body.city) {
     city = req.body.city;
   }
   if (req.body.venue) {
     venue = req.body.venue;
   }
-
   req.body.location = {
     city,
     venue,
@@ -97,11 +95,60 @@ exports.createLocation = async (req, res, next) => {
   next();
 };
 
-exports.uploadImageCover = async (req, res, next) => {
+const deleteImage = async (fileURL, req, res, next) => {
+  const n = fileURL.indexOf("com");
+  const fileToBeDeleted = fileURL.substring(n + 4);
+
+  const params = {
+    Bucket: AWS_BUCKET_NAME,
+    Key: fileToBeDeleted,
+  };
+
+  s3.deleteObject(params, function (err, data) {
+    if (err) {
+      return next(new AppError("Could not delete image!"), 400);
+    }
+    console.log("File deleted successfully.");
+  });
+};
+
+exports.deleteEvent = catchAsync(async (req, res, next) => {
+  const event = await Event.findById(req.params.id);
+
+  if (!event) {
+    return next(new AppError("No document found by that ID!", 404));
+  }
+
+  await deleteImage(event.imageCover);
+
+  await event.remove();
+
+  res.status(204).json({
+    status: "Success",
+  });
+});
+
+exports.deleteOldImage = catchAsync(async (req, res, next) => {
+  if (!req.file) {
+    next();
+  }
+  const event = await Event.findById(req.params.id);
+
+  if (!event) {
+    return next(new AppError("No document found by that ID!", 404));
+  }
+
+  await deleteImage(event.imageCover);
+
+  next();
+});
+
+exports.uploadImageCover = catchAsync(async (req, res, next) => {
   if (!req.file) {
     next();
   } else {
-    console.log("geldi");
+    if (req.body.imageCover) {
+    }
     const path = require("path");
     const file = req.file;
 
@@ -114,7 +161,7 @@ exports.uploadImageCover = async (req, res, next) => {
     const params = {
       ACL: "public-read",
       Bucket: AWS_BUCKET_NAME,
-      Key: name, // File name you want to save as in S3
+      Key: name,
       Body: file.buffer,
     };
 
@@ -128,22 +175,8 @@ exports.uploadImageCover = async (req, res, next) => {
       next();
     });
   }
-};
+});
 
 exports.getAllEvents = factory.getAll(Event);
 exports.updateEvent = factory.updateOne(Event);
 exports.getEvent = factory.getOne(Event);
-
-exports.deleteEvent = catchAsync(async (req, res, next) => {
-  const doc = await Event.findById(req.params.id);
-
-  if (!doc) {
-    return next(new AppError("No document found by that ID!", 404));
-  }
-
-  doc.remove();
-
-  res.status(204).json({
-    status: "Success",
-  });
-});

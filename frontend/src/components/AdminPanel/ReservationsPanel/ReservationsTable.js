@@ -12,8 +12,6 @@ const ReservationsTable = (props) => {
   const [reservationsData, setReservationsData] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
-  const [filteredInfo, setFilteredInfo] = useState(null);
-  const [sortedInfo, setSortedInfo] = useState(null);
 
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
@@ -21,9 +19,29 @@ const ReservationsTable = (props) => {
     setSearchedColumn(dataIndex);
   };
 
+  const parseReservationData = (reservations) => {
+    const data = [];
+    reservations.map((reservation, index) => {
+      data.push({
+        username: reservation.user.name,
+        email: reservation.user.email,
+        title: reservation.event.title,
+        startDate: reservation.event.startDate,
+        price: reservation.price,
+        tickets: reservation.tickets,
+        key: index,
+        _id: reservation._id,
+      });
+    });
+    return data;
+  };
+
   useEffect(() => {
     setReservationsData([]);
-    setReservationsData(props.reservations);
+
+    console.log(props.reservations);
+    //setReservationsData(props.reservations);
+    setReservationsData(parseReservationData(props.reservations));
   }, [props.reservations]);
 
   const handleReset = (clearFilters) => {
@@ -112,7 +130,7 @@ const ReservationsTable = (props) => {
 
   const columns = [
     {
-      title: "Username",
+      title: "User name",
       dataIndex: "username",
       key: "username",
       ...getColumnSearchProps("username"),
@@ -162,7 +180,7 @@ const ReservationsTable = (props) => {
       render: (record) => (
         <Space size="middle">
           <Popconfirm
-            title="Are you sure to delete this event?"
+            title="Are you sure to delete this reservation?"
             onConfirm={() => props.deleteReservation(record)}
             okText="Yes"
             cancelText="No"

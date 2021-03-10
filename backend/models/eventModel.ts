@@ -88,7 +88,6 @@ const EventSchema = new Schema(
 
 EventSchema.virtual("seatsLeft").get(function (this: EventInterface) {
   const seats = this.maxPeople - this.participants;
-  console.log(seats);
   return seats;
 });
 

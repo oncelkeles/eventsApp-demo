@@ -13,11 +13,12 @@ const Event = (props) => {
   return (
     <div className={classes.EventBox}>
       <div className={classes.Event}>
-        <div style={{ borderBottom: "2px solid black" }}>
+        <div className={classes.ImageDiv}>
           <img
             className={classes.Image}
             src={event.imageCover}
             alt={event.title}
+
           />
         </div>
         {/*<div style={{ height: "4px", width: "100%" }} />*/}

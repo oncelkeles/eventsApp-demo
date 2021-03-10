@@ -26,6 +26,7 @@
 
 .Image {
   display: flex;
+  object-fit: contain;
   align-items: center;
   justify-content: center;
   width: 600px;

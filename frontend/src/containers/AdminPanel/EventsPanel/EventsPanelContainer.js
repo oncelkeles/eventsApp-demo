@@ -9,14 +9,17 @@ import classes from "../PanelsContainer.module.css";
 import * as actionTypes from "../../../store/actions/action";
 import scrollOnClose from "../../../utils/scrollOnClose";
 import EventDetails from "../../../components/EventDetails/EventDetails";
+import Spinner from "../../../UI/Spinner/Spinner";
 
-import background from "../../../images/event-background.jpg";
 
 const EventsPanelContainer = (props) => {
   const history = useHistory();
+
+  const [loading, setLoading] = useState(false);
   const [reload, setReload] = useState(false);
   const [events, setEvents] = useState({});
   const [loadingTable, setLoadingTable] = useState(false);
+
 
   const fetchEvents = async () => {
     try {
@@ -32,13 +35,17 @@ const EventsPanelContainer = (props) => {
 
   const deleteEventHandler = async (eventRecord) => {
     try {
+      setLoading(true);
       const url = "/events/" + eventRecord.id;
       const res = await services.delete(url);
+      setLoading(false);
       message.success("Event deleted successfully.");
       setReload(!reload);
-      props.rerender();
+      const temp = await fetchEvents();
+      setEvents(temp);
     } catch (err) {
       message.error("Could not delete the event! Try again.");
+      setLoading(false);
     }
   };
 
@@ -60,16 +67,21 @@ const EventsPanelContainer = (props) => {
     data.append("maxPeople", values.maxPeople);
     if (selectedImage) {
       data.append("photo", selectedImage, imageDescription);
+    } else {
+      message.error("You need to upload an image for the event!");
     }
     const url = "/events/";
 
     try {
+      setLoading(true);
       const res = await services.post(url, data);
+      setLoading(false);
       history.push("/events-panel");
       setReload(!reload);
       message.success("Event created successfully!");
     } catch (err) {
       message.error("Could not create event, please try again!");
+      setLoading(false);
     }
   };
 
@@ -91,44 +103,38 @@ const EventsPanelContainer = (props) => {
     data.append("venue", values.venue);
     data.append("maxPeople", values.maxPeople);
     if (selectedImage) {
-      data.append("imageCover", selectedImage, imageDescription);
-    } else {
-      data.append("imageCover", imgCover);
+      data.append("photo", selectedImage, imageDescription);
     }
+    for (let key of data.entries()) {
+      console.log(key[0] + ", " + key[1]);
+    }
+    console.log(values.id);
 
     const url = "/events/" + values.id;
 
     try {
+      setLoading(true);
       const res = await services.patch(url, data);
+      setLoading(false);
       history.push("/events-panel");
       setReload(!reload);
       message.success("Event updated successfully!");
     } catch (err) {
       message.error("Could not update event, please try again!");
+      setLoading(false);
     }
   };
 
   useEffect(async () => {
-    const temp = fetchEvents();
+    const temp = await fetchEvents();
     setEvents(temp);
   }, [reload]);
 
   return (
     <div className={classes.EventsPanelContainer}>
-      <img
-        style={{
-          width: "100vw",
-          height: "100%",
-          position: "fixed",
-          opacity: "0.9",
-          zIndex: "-1",
-        }}
-        src={background}
-        alt={"Photo by Vishnu R Nair from Pexels"}
-      />
+      {loading ? <Spinner /> : null}
       <EventsPanel
         events={events}
-        rerender={fetchEvents}
         updateEvent={updateEventHandler}
         createEvent={createEventHandler}
         loadingTable={loadingTable}

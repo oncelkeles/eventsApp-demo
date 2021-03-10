@@ -18,8 +18,8 @@
   border: 2px solid #000;
   /*border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;*/
-  flex-grow:0;
-  flex-shrink:0;
+  flex-grow: 0;
+  flex-shrink: 0;
   /*flex-basis:calc(50% - 10px);*/ /* separate properties for IE11 upport */
   margin: 2.4em 0 2.4em 0;
   display: flex;
@@ -43,15 +43,25 @@
   font-size: 12px;
 }
 
+.ImageDiv {
+  border-bottom: 2px solid black;
+  overflow: hidden;
+  width: 100%;
+  background-color: black;
+}
+
+
 .Image {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
+  object-fit: contain;
   height: 200px;
+  resize: vertical;
   /*border-bottom: 3px solid #131313;*/
-
 }
+
 
 .Button {
   width: 100%;

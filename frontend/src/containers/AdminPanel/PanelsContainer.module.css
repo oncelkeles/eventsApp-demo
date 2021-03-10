@@ -4,10 +4,24 @@
 
 .EventsPanelContainer {
   min-height: 800px;
-  /*background-color: primary;*/
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: none;
+  background-image: url("https://eventsdemobucket.s3.us-east-2.amazonaws.com/images/event-background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.ReservationsPanelContainer {
+  min-height: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-image: url("https://eventsdemobucket.s3.us-east-2.amazonaws.com/images/reservation-background4.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }

@@ -65,7 +65,6 @@ const EventSchema = new mongoose_1.Schema({
 });
 EventSchema.virtual("seatsLeft").get(function () {
     const seats = this.maxPeople - this.participants;
-    console.log(seats);
     return seats;
 });
 EventSchema.pre("remove", async function (next) {
